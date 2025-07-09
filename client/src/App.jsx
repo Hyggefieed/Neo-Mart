@@ -1,6 +1,5 @@
 import React from 'react';
 import { ShoppingCart, Star, Truck, Shield, Headphones, Award, ArrowRight, Mail } from 'lucide-react';
-import './index.css';
 
 const App = () => {
   return (
