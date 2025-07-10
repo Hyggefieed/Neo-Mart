@@ -1,9 +1,20 @@
-import express from 'express';
-import { register, login } from '../controllers/authController.js';
-
+// routes/auth.js
+const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-router.post('/register', register);
-router.post('/login', login);
+const SECRET = "your_jwt_secret"; // store securely in .env
 
-export default router;
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Mock check — replace with DB lookup
+  if (email === 'user@example.com' && password === 'password123') {
+    const token = jwt.sign({ email }, SECRET, { expiresIn: '1h' });
+    res.json({ token });
+  } else {
+    res.status(401).json({ message: 'Invalid credentials' });
+  }
+});
+
+module.exports = router;
