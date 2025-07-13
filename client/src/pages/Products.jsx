@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function FlipCard({ frontContent, backContent, className = "", onClick }) {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -27,6 +29,7 @@ function FlipCard({ frontContent, backContent, className = "", onClick }) {
     </div>
   );
 }
+
 
 export default function FlippingProductGrid() {
   const [products, setProducts] = useState([]);
