@@ -15,6 +15,7 @@ const Home = () => {
       <HeroSection />
       <ProductCard />
       <FlippingProductGrid />
+      <ProductCard />
       <Whychoose />
       <Testimonial />
       <Newsletter />
