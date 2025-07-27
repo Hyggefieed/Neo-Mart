@@ -26,7 +26,7 @@ const Navbar = () => {
               About
             </Link>
             <Link to="/register" className="text-gray-600 hover:text-[#2F3F50] font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#2F3F50] after:transition-all after:duration-300 hover:after:w-full">
-              Contact
+              Register
             </Link>
             <Link to="/login" className="text-gray-600 hover:text-[#2F3F50] font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#2F3F50] after:transition-all after:duration-300 hover:after:w-full">
               Sign in
