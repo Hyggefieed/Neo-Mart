@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 
+import {useApp} from '../context/AppContext'
+
 function FlipCard({ frontContent, backContent, className = "", onClick }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleFlip = () => {
+  const handleFlip = (e) => {
+    // Don't flip if clicking on a button or interactive element
+    if (e.target.tagName === 'BUTTON') {
+      return;
+    }
     setIsFlipped((f) => !f);
     onClick?.();
   };
+  const { addToCart } = useApp();
 
   return (
     <div
@@ -30,6 +37,7 @@ function FlipCard({ frontContent, backContent, className = "", onClick }) {
 
 export default function FlippingProductGrid() {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useApp();
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/category/smartphones?limit=8")
@@ -113,11 +121,15 @@ export default function FlippingProductGrid() {
                     </div>
                   </div>
                   <div className="w-full px-6 pb-5">
-                    <button className="
-                      w-full bg-[#2f3f50] hover:bg-[#233041]
-                      text-white py-2 px-4 text-base font-semibold uppercase
-                      rounded transition
-                    ">
+                    <button 
+                      className="
+                        w-full bg-[#2f3f50] hover:bg-[#233041]
+                        text-white py-2 px-4 text-base font-semibold uppercase
+                        rounded transition
+                      " 
+                      onClick={() => addToCart(product)
+                      }
+                    >
                       Add to Cart
                     </button>
                   </div>

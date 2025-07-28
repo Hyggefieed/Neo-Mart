@@ -6,6 +6,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Products from "../pages/Products";
 import About from "../pages/About";
+import Cart from "../pages/Cart";
+
 
 const AppRoutes = () => {
   return (
@@ -15,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/products" element={<Products />} />
       <Route path="/about" element={<About />} />
+      <Route path="/cart" element={<Cart/>}/>
     </Routes>
   );
 };

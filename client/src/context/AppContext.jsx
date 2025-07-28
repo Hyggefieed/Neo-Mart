@@ -9,11 +9,11 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const addToCart = (product) => {
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === product.id);
       if (existing) {
-        return prev.map(item => 
-          item.id === product.id 
+        return prev.map((item) =>
+          item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -23,7 +23,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
-    setCart(prev => prev.filter(item => item.id !== productId));
+    setCart((prev) => prev.filter((item) => item.id !== productId));
   };
 
   const updateQuantity = (productId, quantity) => {
@@ -31,26 +31,44 @@ export const AppProvider = ({ children }) => {
       removeFromCart(productId);
       return;
     }
-    setCart(prev => prev.map(item => 
-      item.id === productId ? { ...item, quantity } : item
-    ));
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity } : item
+      )
+    );
   };
 
   const getTotalItems = () => cart.reduce((t, i) => t + i.quantity, 0);
-  const getTotalPrice = () => cart.reduce((t, i) => t + (i.price * i.quantity), 0);
+  const getTotalPrice = () => cart.reduce((t, i) => t + i.price * i.quantity, 0);
 
   return (
-    <AppContext.Provider value={{
-      user, setUser, cart, setCart, orders, setOrders, loading, setLoading,
-      addToCart, removeFromCart, updateQuantity, getTotalItems, getTotalPrice
-    }}>
+    <AppContext.Provider
+      value={{
+        user,
+        setUser,
+        cart,
+        setCart,
+        orders,
+        setOrders,
+        loading,
+        setLoading,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        getTotalItems,
+        getTotalPrice,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
 };
 
+// ✅ Correct hook export
 export const useApp = () => {
   const context = useContext(AppContext);
-  if (!context) throw new Error('useApp must be used within AppProvider');
+  if (!context) {
+    throw new Error('useApp must be used within an AppProvider');
+  }
   return context;
 };
